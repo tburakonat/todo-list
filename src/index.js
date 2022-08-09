@@ -1,9 +1,8 @@
 import { Task } from './Task'
+import { modalEvents } from './modalEvents'
+import { createTask } from './taskEvents'
 
-const contentDiv = document.getElementById('content')
-const h1 = document.createElement('h1')
-h1.textContent = 'Hello World'
-contentDiv.appendChild(h1)
-
-const myTask = new Task('Einkaufen', 'Fleisch, Fisch, Eier', '12.08.2022', 'hoch')
-console.log(myTask)
+const myTask = new Task('Shop', 'Meat, Fish, Eggs', '2022-08-12', 'high')
+const anotherTask = new Task('Homework', 'Math, English, History', '2022-08-14', 'medium')
+myTask.displayTask()
+anotherTask.displayTask()
