@@ -1,4 +1,5 @@
 import { Task } from './Task'
+import { allTasks } from './allTasks'
 
 export const createTask = (() => {
 	const taskForm = document.querySelector('.book-form')
@@ -17,6 +18,7 @@ export const createTask = (() => {
 		const formData = getFormData(e)
 		const task = new Task(formData.title, formData.description, formData.dueDate, formData.priority)
 		task.displayTask()
+		allTasks.push(task)
 		document.querySelector('[data-close-modal]').click()
 		taskForm.reset()
 	})
