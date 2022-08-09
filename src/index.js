@@ -14,4 +14,4 @@ allTasks.push(anotherTask)
 console.log(myTask)
 console.log(anotherTask)
 
-console.log(allTasks)
+console.log(`isDone before the Click:`, allTasks[0].isDone)

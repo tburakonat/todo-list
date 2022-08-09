@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
+import { allTasks } from './allTasks'
 
 export class Task {
-	constructor(title, description, dueDate, priority) {
+	constructor(title, description, dueDate, priority, isDone = false) {
 		this.title = title
 		this.description = description
 		this.dueDate = dueDate
@@ -64,5 +65,15 @@ export class Task {
 			button.classList.add('not-done')
 			button.classList.remove('done')
 		}
+		console.log(`isDone after The Click:`, allTasks[0].isDone)
+		/*  
+		Why don't I need to update the allTasks array? For example something like this?
+		Why is the isDone property of the Task instance that I changed, automatically updated in allTasks
+			let temp = allTasks.map(task => {
+			const { title, description, dueDate, priority } = task
+				return task.id === this.id ? new Task(title, description, dueDate, priority, !this.isDone) : task
+			})
+			console.log(temp)
+		*/
 	}
 }
