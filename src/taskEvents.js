@@ -1,8 +1,8 @@
 import { Task } from './Task'
-import { allTasks } from './allTasks'
+import { saveToLocalStorage } from './localStorage'
 
 export const createTask = (() => {
-	const taskForm = document.querySelector('.book-form')
+	const taskForm = document.querySelector('.task-form')
 
 	function getFormData(e) {
 		const form = e.target
@@ -18,7 +18,7 @@ export const createTask = (() => {
 		const formData = getFormData(e)
 		const task = new Task(formData.title, formData.description, formData.dueDate, formData.priority)
 		task.displayTask()
-		allTasks.push(task)
+		saveToLocalStorage(task)
 		document.querySelector('[data-close-modal]').click()
 		taskForm.reset()
 	})

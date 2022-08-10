@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
-import { allTasks } from './allTasks'
+import { deleteFromLocalStorage, editTaskInLocalStorage } from './localStorage'
 
 export class Task {
-	constructor(title, description, dueDate, priority, isDone = false) {
+	constructor(title, description, dueDate, priority) {
 		this.title = title
 		this.description = description
 		this.dueDate = dueDate
@@ -41,6 +41,12 @@ export class Task {
 		removeButton.classList.add('remove-button')
 
 		doneButton.onclick = this.changeStatus
+		removeButton.addEventListener('click', e => {
+			const btn = e.target
+			const taskCard = btn.closest('.task-card')
+			taskCard.remove()
+			deleteFromLocalStorage(this)
+		})
 
 		task.appendChild(title)
 		task.appendChild(description)
@@ -55,6 +61,7 @@ export class Task {
 
 	changeStatus = e => {
 		this.isDone = !this.isDone
+		editTaskInLocalStorage(this)
 		const button = e.target
 		if (this.isDone) {
 			button.textContent = 'Mark as not done'
@@ -65,15 +72,5 @@ export class Task {
 			button.classList.add('not-done')
 			button.classList.remove('done')
 		}
-		console.log(`isDone after The Click:`, allTasks[0].isDone)
-		/*  
-		Why don't I need to update the allTasks array? For example something like this?
-		Why is the isDone property of the Task instance that I changed, automatically updated in allTasks
-			let temp = allTasks.map(task => {
-			const { title, description, dueDate, priority } = task
-				return task.id === this.id ? new Task(title, description, dueDate, priority, !this.isDone) : task
-			})
-			console.log(temp)
-		*/
 	}
 }
