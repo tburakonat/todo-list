@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>ToDo WebApp</title>
+	</head>
+	<body>
+		<div id="content">
+			<header class="navbar">
+				<h1>ToDo App</h1>
+				<button data-open-modal class="open-modal">Add Todo</button>
+			</header>
+			<div class="modal">
+				<div class="modal-header">
+					<h2>Add New Task</h2>
+					<button data-close-modal id="close-modal">&times;</button>
+				</div>
+				<form class="task-form" name="task-form">
+					<label for="title">Title</label>
+					<input type="text" id="title" required />
+					<label for="description">Description</label>
+					<input type="text" id="description" required />
+					<label for="dueDate">Due Date</label>
+					<input type="date" id="dueDate" required />
+					<label for="priority">Priority</label>
+					<select name="priority" id="priority">
+						<option disabled selected>Select a Priority:</option>
+						<option value="low">Low</option>
+						<option value="medium">Medium</option>
+						<option value="high">High</option>
+					</select>
+					<button>Add New Task</button>
+				</form>
+			</div>
+			<div id="overlay"></div>
+			<section id="tasks"></section>
+		</div>
+		<script src="main.js"></script>
+	</body>
+</html>
