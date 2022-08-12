@@ -45,7 +45,7 @@ export const displayTasksInLocalStorage = () => {
 				console.log('There is an array in localStorage')
 				console.log(tasks)
 				tasks.forEach(task => {
-					const t = new Task(task.title, task.description, task.dueDate, task.priority, task.id)
+					const t = new Task(task.title, task.description, task.dueDate, task.priority, task.isDone, task.id)
 					t.displayTask()
 					console.log(t)
 				})

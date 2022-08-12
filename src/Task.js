@@ -2,12 +2,12 @@ import { v4 as uuidv4 } from 'uuid'
 import { deleteFromLocalStorage, editTaskInLocalStorage } from './localStorage'
 
 export class Task {
-	constructor(title, description, dueDate, priority, id = uuidv4()) {
+	constructor(title, description, dueDate, priority, isDone = false, id = uuidv4()) {
 		this.title = title
 		this.description = description
 		this.dueDate = dueDate
 		this.priority = priority
-		this.isDone = false
+		this.isDone = isDone
 		this.id = id
 	}
 
@@ -28,7 +28,15 @@ export class Task {
 		description.textContent = this.description
 		dueDate.textContent = this.dueDate
 		priority.textContent = this.priority
-		doneButton.textContent = 'Mark as done'
+		if (this.isDone) {
+			doneButton.textContent = 'Mark as not done'
+			doneButton.classList.add('done')
+			doneButton.classList.remove('not-done')
+		} else {
+			doneButton.textContent = 'Mark as done'
+			doneButton.classList.add('not-done')
+			doneButton.classList.remove('done')
+		}
 		removeButton.textContent = 'Remove Task'
 
 		task.classList.add('task-card')
