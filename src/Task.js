@@ -2,13 +2,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { deleteFromLocalStorage, editTaskInLocalStorage } from './localStorage'
 
 export class Task {
-	constructor(title, description, dueDate, priority) {
+	constructor(title, description, dueDate, priority, id = uuidv4()) {
 		this.title = title
 		this.description = description
 		this.dueDate = dueDate
 		this.priority = priority
 		this.isDone = false
-		this.id = uuidv4()
+		this.id = id
 	}
 
 	displayTask() {

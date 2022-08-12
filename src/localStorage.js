@@ -1,3 +1,5 @@
+import { Task } from './Task'
+
 export const saveToLocalStorage = taskToSave => {
 	console.log('Saving to LocalStorage')
 	const oldTasks = JSON.parse(localStorage.getItem('tasks'))
@@ -28,4 +30,27 @@ export const editTaskInLocalStorage = editedTask => {
 	const newTasks = oldTasks.map(task => (task.id === editedTask.id ? editedTask : task))
 	localStorage.setItem('tasks', JSON.stringify(newTasks))
 	console.log('Edited from localstorage')
+}
+
+export const displayTasksInLocalStorage = () => {
+	// Take the object from localStorage and make a new Task with it
+	console.log('Displaying Tasks')
+	window.addEventListener(
+		'DOMContentLoaded',
+		() => {
+			const tasks = JSON.parse(localStorage.getItem('tasks'))
+			if (!tasks || tasks.length == 0) {
+				console.log('There is no array in localStorage')
+			} else {
+				console.log('There is an array in localStorage')
+				console.log(tasks)
+				tasks.forEach(task => {
+					const t = new Task(task.title, task.description, task.dueDate, task.priority, task.id)
+					t.displayTask()
+					console.log(t)
+				})
+			}
+		},
+		{ once: true }
+	)
 }
